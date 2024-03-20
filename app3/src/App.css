@@ -1,0 +1,13 @@
+th,td{
+  border: solid rgba(61, 70, 66, 0.144) 3px;
+  padding: 2px;
+  text-align: center;
+  background-color: rgba(48, 68, 68, 0.062);
+  color: palevioletred;
+  margin: dotted rgb(14, 13, 13) 2px;
+
+}
+body{
+  background: color #2d2d2d;
+
+}
