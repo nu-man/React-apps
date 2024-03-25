@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Users from "./src/components/Users.js"
-
+import Users from "./components/Users.js"
+import "./App.css"
+import Navbar from "./components/Navbar.js"
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -21,7 +22,7 @@ function App() {
     <>
         <Navbar />
         <div className="container"> 
-            <Users users={data}/>
+            <Users users={users}/>
         </div>
     </>
   )
