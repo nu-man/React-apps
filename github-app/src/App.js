@@ -3,6 +3,7 @@ import axios from "axios";
 import Users from "./components/Users.js"
 import "./App.css"
 import Navbar from "./components/Navbar.js"
+import Search from "./components/Search.js"
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -22,6 +23,7 @@ function App() {
     <>
         <Navbar />
         <div className="container"> 
+             <Search/>
             <Users users={users}/>
         </div>
     </>
