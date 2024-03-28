@@ -1,12 +1,16 @@
 import { useState } from "react";
-function Search() {
+function Search({searchUsers}) {
   const [username, setUsername] = useState("");
   const onChangeHandler = (e) => {
     setUsername(e.target.value);
   };
+  const onSubmitHandler=(e) =>{
+    e.preventDefault();
+    searchUsers(username)
+  }
   return (
     <>
-      <form className="form">
+      <form className="form" onSubmit={onSubmitHandler}>
         <input
           type="text"
           name="name"
@@ -23,4 +27,3 @@ function Search() {
   );
 }
 export default Search;
-//console.log("mohd")
