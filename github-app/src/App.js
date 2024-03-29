@@ -5,10 +5,13 @@ import "./App.css";
 import Navbar from "./components/Navbar.js";
 import Search from "./components/Search.js";
 import Loading from "./components/loading.js"
+import Alert from "./components/Alert.js";
 
 function App() {
   const [users, setUsers] = useState([]);
   const [loading, setloading] = useState(true)
+  const [alert,setAlert]=useState(null)
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,6 +26,7 @@ function App() {
     fetchData();
   }, []);
   
+  //Searchig a user
   const searchUsers = async (username) => {
   
       try {
@@ -33,12 +37,23 @@ function App() {
       } catch (error) {}
     
   };
-
+  //Clearing the users
+  const clearUsers=()=>{
+    setUsers([])
+  }
+ //Giving Alerts
+  const showAlert=(alert)=>{
+    setAlert(alert)
+    setTimeout(() => {
+      setAlert(null)
+    }, 3000);
+  }
   return (
     <>
       <Navbar />
       <div className="container">
-        <Search searchUsers={searchUsers} />
+        <Alert alert={alert}/>
+        <Search searchUsers={searchUsers} clearUsers={clearUsers} showAlert={showAlert}/>
         {loading && <Loading/>} 
         <Users users={users} />
       </div>

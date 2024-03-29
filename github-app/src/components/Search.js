@@ -1,12 +1,17 @@
 import { useState } from "react";
-function Search({searchUsers}) {
+function Search({searchUsers,clearUsers,showAlert}) {
   const [username, setUsername] = useState("");
   const onChangeHandler = (e) => {
     setUsername(e.target.value);
   };
   const onSubmitHandler=(e) =>{
     e.preventDefault();
+   if(username===""){
+    showAlert({msg:"Username cannot be empty", type:"danger"})
+   }else{
     searchUsers(username)
+    setUsername("")
+   }
   }
   return (
     <>
@@ -16,6 +21,8 @@ function Search({searchUsers}) {
           name="name"
           placeholder="Search Github User..."
           onChange={onChangeHandler}
+          value={username}
+          autoComplete="off"
         />
         <input
           type="submit"
@@ -23,6 +30,8 @@ function Search({searchUsers}) {
           className="btn btn-dark btn-block"
         />
       </form>
+
+    <button className="btn btn-light btn-block" onClick={clearUsers}> Clear Users</button>
     </>
   );
 }

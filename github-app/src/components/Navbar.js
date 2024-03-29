@@ -5,7 +5,7 @@ function NavBar() {
         <>
             <nav className="navbar bg-primary">
                 <h1>
-                    <a href='/'> <i className="fab fa-github" />GitHub Search Engine</a>
+                    <a href='/'> <i className="fab fa-github" />Github </a>
                 </h1>
                 <ul>
                     <li>
