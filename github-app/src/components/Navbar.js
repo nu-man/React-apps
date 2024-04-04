@@ -1,21 +1,21 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function NavBar() {
     return (
         <>
             <nav className="navbar bg-primary">
                 <h1>
-                    <a href='/'> <i className="fab fa-github" />Github </a>
+                    <Link to='/'> <i className="fab fa-github" />GitHub Search Engine</Link>
                 </h1>
                 <ul>
                     <li>
-                        <a href="/"> Home</a>
+                        <Link to="/"> Home</Link>
                     </li>
                     <li>
-                        <a href="/Contact"> Contact </a>
+                        <Link to="/Contact"> Contact </Link>
                     </li>
                     <li>
-                        <a href="/About"> About Us </a>
+                        <Link to="/About"> About Us </Link>
                     </li>
                 </ul>
             </nav>
