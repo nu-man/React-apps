@@ -8,6 +8,7 @@ import Loading from "./components/loading.js";
 import Alert from "./components/Alert.js";
 import Contact from "./components/Contact.js";
 import About from "./components/About.js";
+import UserPage from "./components/UserPage.js";
 
 //Routes
 import { Routes, Route } from "react-router-dom";
@@ -52,27 +53,31 @@ function App() {
   };
   return (
     <>
-        <Navbar />
-            <div className="container">
-            <Alert alert={alert} />
-            </div>
-            
-            <Routes>
-                <Route path="/" element={<>
-
-                    <div className="container">
-                       
-                        <Search searchUsers={searchUsers} clearUsers={clearUsers} showAlert={showAlert} />
-                        {loading && <Loading />}
-                       {<Users users={users} />}
-
-                    </div>
-                </>
-                }> </Route>
-                <Route path="/contact" element={<Contact />}> </Route>
-                <Route path="/about" element={<About />}></Route>
-                
-            </Routes>
+      <Navbar />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <div className="container">
+                <Alert alert={alert} />
+                <Search
+                  searchUsers={searchUsers}
+                  clearUsers={clearUsers}
+                  showAlert={showAlert}
+                />
+                {loading && <Loading />}
+                {<Users users={users} />}
+              </div>
+            </>
+          }
+        >
+        </Route>
+        <Route path="/contact" element={<Contact />}>
+        </Route>
+        <Route path="/about" element={<About />}></Route>
+        <Route path="/userpage" element={<UserPage/>}></Route>
+      </Routes>
     </>
   );
 }
