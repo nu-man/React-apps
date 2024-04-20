@@ -14,6 +14,7 @@ import UserPage from "./components/UserPage.js";
 import { Routes, Route } from "react-router-dom";
 function App() {
   const [users, setUsers] = useState([]);
+  const[user,setUser]=useState([]);
   const [loading, setloading] = useState(true);
   const [alert, setAlert] = useState(null);
 
@@ -51,13 +52,23 @@ function App() {
       setAlert(null);
     }, 3000);
   };
+
+  //Single user data 
+  const getUser=async (username)=>{
+    try {
+        const {data}=await axios.get(`https://api.github.com/users/${username}`)
+        setUser(data);
+    } catch (error) {
+        console.error(error)
+    }
+
+}
   return (
     <>
       <Navbar />
       <Routes>
         <Route
-          path="/"
-          element={
+          path="/" element={
             <>
               <div className="container">
                 <Alert alert={alert} />
@@ -76,7 +87,7 @@ function App() {
         <Route path="/contact" element={<Contact />}>
         </Route>
         <Route path="/about" element={<About />}></Route>
-        <Route path="/userpage" element={<UserPage/>}></Route>
+        <Route path="/user/:username" element={<UserPage getUser={getUser} user={user}/>}></Route>
       </Routes>
     </>
   );

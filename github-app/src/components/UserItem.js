@@ -8,7 +8,7 @@ function UserItem({ user }) {
       <img src={user.avatar_url} alt="avatar" style={{ width: "120px" }} />
       <h3>{user.login}</h3>
       <div>
-        <Link to={`/userpage`} className="btn btn-dark btn-sm my-1">{" "}Git Profile{" "}</Link>
+        <Link to={`/user/${user.login}`} className="btn btn-dark btn-sm my-1">Git Profile</Link>
       </div>
     </div>
   );
