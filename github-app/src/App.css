@@ -285,6 +285,14 @@ img {
   background: var(--success-color);
   color: #fff;
 }
+footer{
+  background-color: black;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  margin-top: 2%;
+}
 
 .btn-white,
 .bg-white,

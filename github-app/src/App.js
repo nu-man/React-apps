@@ -7,14 +7,15 @@ import Search from "./components/Search.js";
 import Loading from "./components/loading.js";
 import Alert from "./components/Alert.js";
 import Contact from "./components/Contact.js";
-import About from "./components/About.js";
 import UserPage from "./components/UserPage.js";
+import Footer from "./components/Footer.js";
 
 //Routes
 import { Routes, Route } from "react-router-dom";
 function App() {
   const [users, setUsers] = useState([]);
-  const[user,setUser]=useState([]);
+  const[user,setUser]=useState({});
+  const[repo,setRepo]=useState([]);
   const [loading, setloading] = useState(true);
   const [alert, setAlert] = useState(null);
 
@@ -32,7 +33,9 @@ function App() {
     fetchData();
   }, []);
 
-  //Searchig a user
+  
+
+  //Searching a user
   const searchUsers = async (username) => {
     try {
       const { data } = await axios.get(
@@ -41,10 +44,12 @@ function App() {
       setUsers(data.items);
     } catch (error) {}
   };
+
   //Clearing the users
   const clearUsers = () => {
     setUsers([]);
   };
+
   //Giving Alerts
   const showAlert = (alert) => {
     setAlert(alert);
@@ -57,12 +62,13 @@ function App() {
   const getUser=async (username)=>{
     try {
         const {data}=await axios.get(`https://api.github.com/users/${username}`)
+        const res=await axios.get(`https://api.github.com/users/${username}/repos?sort=desc&per_page=5`)
         setUser(data);
-    } catch (error) {
+        setRepo(res.data)
+      } catch (error) {
         console.error(error)
-    }
-
-}
+      }
+  }
   return (
     <>
       <Navbar />
@@ -86,9 +92,10 @@ function App() {
         </Route>
         <Route path="/contact" element={<Contact />}>
         </Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/user/:username" element={<UserPage getUser={getUser} user={user}/>}></Route>
+     
+        <Route path="/user/:username" element={<UserPage getUser={getUser} user={user} repo={repo}/>}></Route>
       </Routes>
+      <Footer/>
     </>
   );
 }
